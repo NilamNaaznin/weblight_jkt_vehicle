@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">JKT Vehicle</string>
+    <string name="continue_with_phone_number">Continue with phone Number</string>
+    <string name="explore_new_ways">Explore new ways to \n travel with JKT Vehicle</string>
+    <string name="term_condition"></string>
+    <string name="terms_condition_privacy_policy"><![CDATA[By continue,you agree that you have read and accept our <b><font color=#13299E><u>Terms & Condition</u></font></b> and <b><font color=#13299E><u>Privacy Policy</u></font></b>]]></string>
+    <string name="phone_number_for_verification">Phone Verification</string>
+    <string name="please_provide_validate_phone_number_to_communicate_with_driver">Please provide validate phone number to communicate with driver</string>
+    <string name="please_provide_name">Please provide full name exactly as mentioned on your Aadhar Card for KYC</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="next">Next</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="enter_otp">Please Enter OTP</string>
+    <string name="please_wait_for_otp_to">Please wait for OTP to</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Nilam Naaznin</string>
+    <string name="phone">+ 91 1234567890</string>
+    <string name="please_provide_valid_email_id_for_kyc">Please provide valid email id for KYC</string>
+    <string name="date">22-07-2023</string>
+    <string name="time">10:30 am</string>
+    <string name="car_name">Mini,CRN 0000077777</string>
+    <string name="pic_address">Pic address</string>
+    <string name="confirm_location">Confirm Location</string>
+    <string name="enter_drop_destination">Enter Drop Destination</string>
+    <string name="enter_pickup_destination">Enter Pickup Destination</string>
+    <string name="book_now">Book Now</string>
+</resources>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:context=".activity.SplashActivity">
+
+
+        <!--<TextView
+            android:id="@+id/tvJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/tvK"
+            android:text="J"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:textSize="80sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/rem_italic_wght" />
+
+        <TextView
+            android:id="@+id/tvK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            android:text="K"
+            android:textColor="@color/black"
+            android:textSize="80sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/rem_italic_wght"  />
+
+        <TextView
+            android:id="@+id/tvT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tvK"
+            android:layout_margin="10dp"
+            android:text="T"
+            android:textColor="@color/black"
+            android:textSize="80sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/rem_italic_wght"
+            android:visibility="visible" />
+-->
+        <!-- <TextView
+             android:id="@+id/tvJKT"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:visibility="gone"
+             android:layout_centerInParent="true"
+             android:text="JKT"
+             android:textColor="@color/black"
+             android:textStyle="italic"
+             android:textSize="80sp"/>-->
+
+
+        <TextView
+            android:id="@+id/tvJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="80sp"
+            android:layout_centerInParent="true"
+            android:alpha="0"
+            android:text=" J "
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/landre_regular"/>
+
+        <TextView
+            android:id="@+id/tvK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="80sp"
+            android:layout_centerInParent="true"
+            android:alpha="0"
+            android:text=" K "
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/landre_regular"/>
+
+        <TextView
+            android:id="@+id/tvT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="80sp"
+            android:alpha="0"
+            android:text=" T "
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/landre_regular"/>
+
+        <TextView
+            android:id="@+id/tvJKT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="80sp"
+            android:alpha="0"
+            android:text=" JKT "
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/landre_regular"/>
+
+    </RelativeLayout>
+</layout>

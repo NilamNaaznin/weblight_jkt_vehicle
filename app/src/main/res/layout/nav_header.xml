@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/person"
+            app:strokeColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/imageViewNavHeaderLayout"/>
+
+        <TextView
+            android:id="@+id/tvHeaderName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageViewNavHeaderLayout"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:text="My Profile"
+            android:drawablePadding="10dp"
+            android:layout_marginStart="10dp"
+            android:drawableEnd="@drawable/arrow_right"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+        <View
+            android:id="@+id/view"
+            android:layout_below="@id/tvHeaderName"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/line_bg"
+            android:layout_height="1dp"/>
+
+        <TextView
+            android:id="@+id/tvCompPro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Complete your profile"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/view"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableRight="@drawable/arrow_right"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/red"
+            android:text="50%"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            android:textSize="16sp"/>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_below="@id/tvCompPro"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/line_bg"
+            android:layout_height="1dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

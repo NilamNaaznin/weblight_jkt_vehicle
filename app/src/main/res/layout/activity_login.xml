@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".activity.LoginActivity">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            app:shapeAppearanceOverlay="@style/circleImageView2"
+            android:layout_above="@+id/tvPhoneVerify"
+            android:scaleType="fitXY"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/car_reg"/>
+
+        <TextView
+            android:id="@+id/tvPhoneVerify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linearLayout"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/phone_number_for_verification"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/edittext_bg"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/countryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp"
+                android:textSize="20dp"
+                android:text="+91"/>
+
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="40dp"
+                android:textColor="@color/shadow_dark"
+                android:gravity="center_vertical"
+                android:textSize="40dp"
+                android:text="|"/>
+
+            <EditText
+                android:id="@+id/etPhoneNo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="center"
+                android:inputType="number"
+                android:maxLength="10"
+                android:paddingStart="5dp"
+                android:cursorVisible="true"
+                android:hint="Phone"
+                android:background="@color/white"
+                android:layout_below="@+id/tvDescription"/>
+
+        </LinearLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSendOTP"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/linearLayout"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/green"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="10dp" />
+
+        <TextView
+            android:id="@+id/tvNewUser"
+            android:layout_below="@+id/btnSendOTP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:text="New User ? "/>
+        <TextView
+            android:id="@+id/btnRegister"
+            android:layout_below="@+id/btnSendOTP"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/tvNewUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/sky"
+            android:textSize="14sp"
+            android:text="Register"/>
+
+    </RelativeLayout>
+</layout>

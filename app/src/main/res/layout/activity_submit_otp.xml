@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".activity.SubmitOTPActivity">
+
+
+
+        <TextView
+            android:id="@+id/tvPhoneNoVerify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/pinView"
+            android:layout_marginBottom="30dp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/please_wait_for_otp_to"/>
+        <!--<TextView
+            android:id="@+id/tvWaitOTP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/please_wait_for_otp_to"/>
+-->
+       <!-- <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvWaitOTP"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="+91 8617309854"/>-->
+
+
+        <com.chaos.view.PinView
+            android:id="@+id/pinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnSubmit"
+            android:layout_centerHorizontal="true"
+            app:itemCount="4"
+            app:itemWidth="50dp"
+            app:itemHeight="50dp"
+            android:textColor="@color/black"
+            app:lineColor="@color/shadow_dark"
+            android:layout_gravity="center"
+            android:inputType="number"
+            android:cursorVisible="true"
+            app:hideLineWhenFilled="false"
+            app:itemRadius="7dp"
+            app:itemSpacing="30dp"
+            style="@style/PinWidget.PinView">
+
+        </com.chaos.view.PinView>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/green"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="7dp" />
+
+        <TextView
+            android:id="@+id/tvSEntOtp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnSubmit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/enter_otp"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+</layout>

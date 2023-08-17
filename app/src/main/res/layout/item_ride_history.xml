@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="7dp"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgV"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/car"
+                    app:shapeAppearanceOverlay="@style/circleImageView" />
+
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/imgV"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/date"
+                    android:textColor="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvDate"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/time"
+                    android:textColor="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/tvCarName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/imgV"
+                    android:layout_below="@+id/tvDate"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/car_name"
+                    android:textColor="@color/black" />
+
+                <ImageView
+                    android:id="@+id/imgDotGreen"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/tvCarName"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/imgV"
+                    android:src="@drawable/baseline_dot"
+                    app:tint="@color/green" />
+
+                <TextView
+                    android:id="@+id/tvPic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/imgDotGreen"
+                    android:layout_below="@+id/tvCarName"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:text="Pic: "
+                    android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/tvPicAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvPic"
+                    android:layout_below="@+id/tvCarName"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/pic_address"
+                    android:textColor="@color/black" />
+
+
+                <ImageView
+                    android:id="@+id/imgDotRed"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/imgDotGreen"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/imgV"
+                    android:src="@drawable/baseline_dot"
+                    app:tint="@color/red" />
+
+                <TextView
+                    android:id="@+id/tvDrop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/imgDotRed"
+                    android:layout_below="@id/imgDotGreen"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:text="Drop: "
+                    android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/tvDropAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvPic"
+                    android:layout_below="@id/imgDotGreen"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:text="Drop Address"
+                    android:textColor="@color/black" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</layout>

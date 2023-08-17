@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/btCam"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/ic_baseline_camera_alt_24"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:tint="@color/green" />
+        <TextView
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="Camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="visible"
+        android:layout_marginStart="50dp"
+        android:id="@+id/btGal"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/ic_baseline_image_24"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:tint="@color/green" />
+        <TextView
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="Gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>
