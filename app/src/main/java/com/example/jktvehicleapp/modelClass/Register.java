@@ -1,13 +1,17 @@
 package com.example.jktvehicleapp.modelClass;
 
 public class Register {
-    String name,mobile,email,password;
+    String name,mobile,email;
 
-    public Register(String name, String mobile, String email, String password) {
+    public Register (String name, String mobile, String email) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;
-        this.password = password;
+    }
+
+    public Register (String mobile, String email) {
+        this.mobile = mobile;
+        this.email = email;
     }
 
     public String getName() {
@@ -32,14 +36,6 @@ public class Register {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
 }

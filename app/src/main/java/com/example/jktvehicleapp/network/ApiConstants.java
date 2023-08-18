@@ -6,6 +6,7 @@ public class ApiConstants {
 
     public static final String BASE_URL="https://jkt.jkguesthouse.co.in/api/";
     public static final String REGISTER="register";
+    public static final String LOGIN="login";
 
 
 
