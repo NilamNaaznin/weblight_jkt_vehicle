@@ -79,7 +79,6 @@ public class PhoneVerifyActivity extends AppCompatActivity implements ApiRespons
                 JSONObject jsonObject = new JSONObject(response);
                 Toast.makeText(this, jsonObject.optString("Message"), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(PhoneVerifyActivity.this, SubmitOTPActivity.class);
-
                 intent.putExtra("userId", binding.etName.getText().toString().trim());
                 startActivity(intent);
                 finish();
