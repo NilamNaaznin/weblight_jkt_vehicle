@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -63,7 +64,6 @@ private ActivityCarComingBinding binding;
         });
 
         binding.imgCall.setOnClickListener(n->{
-            String phno="1234567890";
             Intent i = new Intent(Intent.ACTION_CALL);
             i.setData(Uri.parse("tel:1234567890"));
 
@@ -71,7 +71,9 @@ private ActivityCarComingBinding binding;
                 startActivity(i);
             }
             else {
-                requestPermissions(new String[]{CALL_PHONE}, 1);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(new String[]{CALL_PHONE}, 1);
+                }
             }
         });
         }
