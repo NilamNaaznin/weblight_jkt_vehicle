@@ -68,11 +68,14 @@ private ActivityLoginBinding binding;
         try {
             if (apiRequest == 1) {
                 JSONObject jsonObject = new JSONObject(response);
-                Toast.makeText(this, jsonObject.optString("message"), Toast.LENGTH_LONG).show();
-
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                String status = jsonObject.optString("status");
+                Toast.makeText(this, jsonObject.optString("message"), Toast.LENGTH_SHORT).show();
+                if(status.equals("1")) {
+                    Intent intent = new Intent(LoginActivity.this, SubmitOTPActivity.class);
+                    intent.putExtra("whichPage", "login");
+                    startActivity(intent);
+                    finish();
+                }
 
             }
         } catch (Exception e) {

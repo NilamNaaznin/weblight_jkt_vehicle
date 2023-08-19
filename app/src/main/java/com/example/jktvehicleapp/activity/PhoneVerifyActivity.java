@@ -77,11 +77,15 @@ public class PhoneVerifyActivity extends AppCompatActivity implements ApiRespons
         try {
             if (apiRequest == 1) {
                 JSONObject jsonObject = new JSONObject(response);
+                String status = jsonObject.optString("status");
                 Toast.makeText(this, jsonObject.optString("Message"), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(PhoneVerifyActivity.this, SubmitOTPActivity.class);
-                intent.putExtra("userId", binding.etName.getText().toString().trim());
-                startActivity(intent);
-                finish();
+                if(status.equals("1")) {
+                    Intent intent = new Intent(PhoneVerifyActivity.this, SubmitOTPActivity.class);
+                    intent.putExtra("userId", binding.etName.getText().toString().trim());
+                    intent.putExtra("whichPage", "register");
+                    startActivity(intent);
+                    finish();
+                }
 
             }
         } catch (Exception e) {

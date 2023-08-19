@@ -39,6 +39,7 @@ private ActivityCarComingBinding binding;
 
                 binding.lottieAni.setVisibility(View.VISIBLE);
 
+                binding.cardOTP.setVisibility(View.VISIBLE);
                 binding.tvOTP.setVisibility(View.VISIBLE);
                 binding.tvGetOTP.setVisibility(View.VISIBLE);
                 binding.tvCarName.setVisibility(View.VISIBLE);

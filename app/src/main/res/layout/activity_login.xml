@@ -74,6 +74,9 @@
                 android:layout_marginStart="10dp"
                 android:paddingStart="5dp"
                 android:cursorVisible="true"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:hint="Enter Phone or Email"
                 android:background="@color/white"
                 android:layout_below="@+id/tvDescription"/>

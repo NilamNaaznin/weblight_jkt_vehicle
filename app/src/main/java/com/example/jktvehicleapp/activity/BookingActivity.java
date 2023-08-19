@@ -17,6 +17,7 @@ public class BookingActivity extends AppCompatActivity {
     private ActivityBookingBinding binding;
     boolean flag = true;
     RadioButton radioButton;
+    private String selectVehicle = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +29,12 @@ public class BookingActivity extends AppCompatActivity {
         });
 
         binding.cardViewCar.setOnClickListener(n -> {
-
-
             if (binding.btnTickCar.getVisibility() == View.VISIBLE) {
+                selectVehicle = "";
                 binding.btnTickCar.setVisibility(View.GONE);
 
             } else {
+                selectVehicle = "Car";
                 binding.btnTickCar.setVisibility(View.VISIBLE);
                 binding.btnTickBigCar.setVisibility(View.GONE);
                 binding.btnTickAuto.setVisibility(View.GONE);
@@ -44,9 +45,11 @@ public class BookingActivity extends AppCompatActivity {
 
 
             if (binding.btnTickBigCar.getVisibility() == View.VISIBLE) {
+                selectVehicle = "";
                 binding.btnTickBigCar.setVisibility(View.GONE);
 
             } else {
+                selectVehicle = "BigCar";
                 binding.btnTickBigCar.setVisibility(View.VISIBLE);
                 binding.btnTickCar.setVisibility(View.GONE);
                 binding.btnTickAuto.setVisibility(View.GONE);
@@ -56,9 +59,11 @@ public class BookingActivity extends AppCompatActivity {
         binding.cardViewAuto.setOnClickListener(n -> {
 
             if (binding.btnTickAuto.getVisibility() == View.VISIBLE) {
+                selectVehicle = "";
                 binding.btnTickAuto.setVisibility(View.GONE);
 
             } else {
+                selectVehicle = "auto";
                 binding.btnTickAuto.setVisibility(View.VISIBLE);
                 binding.btnTickCar.setVisibility(View.GONE);
                 binding.btnTickBigCar.setVisibility(View.GONE);
@@ -70,13 +75,12 @@ public class BookingActivity extends AppCompatActivity {
 
             int selectedId = binding.radioGroup.getCheckedRadioButtonId();
 
-
-            if (selectedId == -1) {
+            if(selectVehicle.isEmpty()){
+                Toast.makeText(BookingActivity.this, "Select Vehicle type", Toast.LENGTH_SHORT).show();
+            }
+            else if (selectedId == -1) {
                 Toast.makeText(BookingActivity.this, "Select pay type", Toast.LENGTH_SHORT).show();
             }
-          /*  else if (binding.btnTickAuto.getVisibility() == View.GONE) {
-                Toast.makeText(BookingActivity.this, "select Car ", Toast.LENGTH_LONG).show();
-            }*/
             else {
                 Intent intent = new Intent(BookingActivity.this, CarComingActivity.class);
                 startActivity(intent);
