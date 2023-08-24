@@ -11,114 +11,127 @@
         android:background="@color/white"
         tools:context=".activity.LoginActivity">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:layout_margin="10dp"
-            app:shapeAppearanceOverlay="@style/circleImageView2"
-            android:layout_above="@+id/tvPhoneVerify"
-            android:scaleType="fitXY"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/car_reg"/>
-
-        <TextView
-            android:id="@+id/tvPhoneVerify"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/linearLayout"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:text="@string/phone_number_for_verification"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:layout_centerInParent="true">
 
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/edittext_bg"
-            android:orientation="horizontal">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgV"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/car_reg"
+                app:shapeAppearanceOverlay="@style/circleImageView2" />
 
             <TextView
-                android:id="@+id/countryCode"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
+                android:id="@+id/tvPhoneVerify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgV"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="@string/phone_number_for_verification"
                 android:textColor="@color/black"
-                android:gravity="center_vertical"
-                android:paddingStart="15dp"
-                android:paddingEnd="10dp"
-                android:visibility="gone"
-                android:textSize="20dp"
-                android:text="+91"/>
-
-            <TextView
-                android:layout_width="10dp"
-                android:layout_height="40dp"
-                android:textColor="@color/shadow_dark"
-                android:gravity="center_vertical"
-                android:visibility="gone"
-                android:textSize="40dp"
-                android:text="|"/>
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etPhoneNo"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:padding="13dp"
+                android:textSize="18sp"
                 android:layout_marginEnd="10dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
-                android:paddingStart="5dp"
                 android:cursorVisible="true"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:maxLines="1"
-                android:hint="Enter Phone or Email"
-                android:background="@color/white"
-                android:layout_below="@+id/tvDescription"/>
+                android:hint="Enter Phone No"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/baseline_mobile"
+                android:drawablePadding="5dp"
+                android:background="@drawable/edittext_bg"
+                android:layout_below="@+id/tvPhoneVerify"/>
 
-        </LinearLayout>
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSendOTP"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@id/linearLayout"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/green"
-            android:text="Login"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            app:cornerRadius="10dp" />
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:padding="13dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/baseline_lock"
+                android:drawablePadding="5dp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:cursorVisible="true"
+                android:hint="Enter Password"
+                android:background="@drawable/edittext_bg"
+                android:layout_below="@+id/etPhoneNo"/>
 
-        <TextView
-            android:id="@+id/tvNewUser"
-            android:layout_below="@+id/btnSendOTP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:text="New User ? "/>
-        <TextView
-            android:id="@+id/btnRegister"
-            android:layout_below="@+id/btnSendOTP"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/tvNewUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/sky"
-            android:textSize="14sp"
-            android:text="Register"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSendOTP"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/etPassword"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/green"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:cornerRadius="10dp" />
+            <ProgressBar
+                android:id="@+id/pBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_marginTop="10dp"
+                android:theme="@style/progressBarBlue"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/btnRegister"/>
+
+            <TextView
+                android:id="@+id/tvNewUser"
+                android:layout_below="@+id/btnSendOTP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:text="New User ? "/>
+            <TextView
+                android:id="@+id/btnRegister"
+                android:layout_below="@+id/btnSendOTP"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/tvNewUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/sky"
+                android:textSize="14sp"
+                android:text="Register"/>
+        </RelativeLayout>
+
+
 
     </RelativeLayout>
 </layout>

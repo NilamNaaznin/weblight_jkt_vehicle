@@ -11,10 +11,11 @@
 
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
             android:src="@drawable/back_arrow" />
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -31,15 +32,16 @@
         <RelativeLayout
             android:id="@+id/relativeProfile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
+            android:visibility="visible"
             android:layout_below="@+id/btnBack">
 
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgProfile"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/person"
                 android:background="#E4E4DF"
                 android:layout_centerHorizontal="true"
@@ -53,8 +55,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgProfile"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="20dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -65,11 +68,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvName"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableTint="@color/shadow_dark"
                 android:drawableEnd="@drawable/arrow_right"
+                android:drawableStart="@drawable/baseline_smartphone"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/shadow_dark"
@@ -87,11 +90,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view1"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableTint="@color/shadow_dark"
                 android:drawableEnd="@drawable/arrow_right"
+                android:drawableStart="@drawable/baseline_email"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/shadow_dark"
@@ -112,11 +115,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:drawableStart="@drawable/baseline_location"
                 android:drawableTint="@color/shadow_dark"
                 android:drawableEnd="@drawable/arrow_right"
+                android:drawablePadding="10dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/shadow_dark"
@@ -144,7 +147,7 @@
                 android:padding="5dp"
                 app:shapeAppearanceOverlay="@style/circleImageView"/>
 
-            <View
+            <!--<View
                 android:id="@+id/view3"
                 android:layout_below="@id/imgAadhar"
                 android:layout_width="match_parent"
@@ -166,10 +169,22 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Logout"/>
+                android:text="Logout"/>-->
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnLogout"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:scaleType="center"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="30dp"
+                android:backgroundTint="@color/grey"
+                app:tint="@color/white"
+                android:src="@drawable/baseline_logout" />
         </RelativeLayout>
 
-
+    <!--    another Layout-->
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -183,7 +198,7 @@
                 android:id="@+id/tvChangeD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update Details"
+                android:text="Update Profile"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="20sp"
@@ -196,6 +211,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:inputType="number"
+                android:cursorVisible="true"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:layout_below="@+id/tvChangeD"
                 android:background="@drawable/blackoutline_bg"
                 android:padding="10dp"
@@ -207,6 +226,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
+                android:cursorVisible="true"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:background="@drawable/blackoutline_bg"
                 android:layout_below="@id/etPhoneNo"
                 android:hint="Enter Email "/>
@@ -222,6 +245,7 @@
                 android:layout_marginTop="20dp"
                 android:padding="5dp"
                 app:shapeAppearanceOverlay="@style/circleImageView"/>
+
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgAadharEdit"
@@ -248,17 +272,30 @@
                 android:textSize="20dp"
                 android:layout_marginTop="10dp"/>
             <TextView
-                android:id="@+id/tvAadaPic"
+                android:id="@+id/tvAadharPic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgAadharEdit"
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="30dp"
-                android:text="Upload Profile"
+                android:text="Upload Aadhar"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_marginTop="10dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/green"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:cornerRadius="10dp" />
 
 
         </RelativeLayout>

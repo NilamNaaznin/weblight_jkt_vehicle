@@ -11,23 +11,12 @@
         android:backgroundTint="@color/white"
         tools:context=".activity.PhoneVerifyActivity">
 
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="-5dp"
-            android:src="@drawable/back_arrow"
-            android:visibility="gone"
-            app:tint="@color/sky"
-            android:contentDescription=""
-            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvPhoneVerify"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ivBack"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginStart="10dp"
             android:text="@string/phone_number_for_verification"
             android:textColor="@color/black"
@@ -37,7 +26,8 @@
         <EditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
             android:layout_marginTop="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -45,7 +35,9 @@
             android:singleLine="true"
             android:imeOptions="actionNext"
             android:hint="Name as per Aadhar"
+            android:drawableStart="@drawable/person"
             android:paddingStart="15dp"
+            android:drawablePadding="5dp"
             android:background="@drawable/edittext_bg"
             android:layout_below="@+id/tvPhoneVerify"/>
 
@@ -79,8 +71,8 @@
                 android:textColor="@color/black"
                 android:gravity="center_vertical"
                 android:paddingStart="15dp"
-                android:paddingEnd="10dp"
-                android:visibility="gone"
+                android:paddingEnd="5dp"
+                android:visibility="visible"
                 android:textSize="20dp"
                 android:text="+91"/>
 
@@ -89,7 +81,7 @@
                 android:layout_height="40dp"
                 android:textColor="@color/shadow_dark"
                 android:gravity="center_vertical"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:textSize="40dp"
                 android:text="|"/>
 
@@ -98,14 +90,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="5dp"
                 android:layout_gravity="center"
-                android:paddingStart="5dp"
+                android:maxLength="10"
+                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
                 android:cursorVisible="true"
-                android:hint="Phone  as per Aadhar/Email id"
+                android:hint="Phone  as per Aadhar"
                 android:background="@color/white"
                 android:layout_below="@+id/tvDescription"/>
         </LinearLayout>
@@ -121,13 +114,60 @@
             android:textColor="@color/black"
             android:textSize="14sp" />
 
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="13dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingStart="15dp"
+            android:drawableStart="@drawable/baseline_lock"
+            android:drawablePadding="5dp"
+            android:maxLength="6"
+            android:inputType="number"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
+            android:cursorVisible="true"
+            android:hint="Enter Password"
+            android:background="@drawable/edittext_bg"
+            android:layout_below="@+id/tvAadharlink"/>
+
+        <EditText
+            android:id="@+id/etConPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="13dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:paddingStart="15dp"
+            android:maxLength="6"
+            android:inputType="number"
+            android:drawableStart="@drawable/baseline_lock"
+            android:drawablePadding="5dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
+            android:cursorVisible="true"
+            android:hint="Enter Confirm Password"
+            android:background="@drawable/edittext_bg"
+            android:layout_below="@+id/etPassword"/>
+
+
+
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSendOTP"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/tvAadharlink"
+            android:layout_below="@id/etConPassword"
             android:layout_marginTop="31dp"
             android:backgroundTint="@color/green"
             android:layout_marginStart="10dp"

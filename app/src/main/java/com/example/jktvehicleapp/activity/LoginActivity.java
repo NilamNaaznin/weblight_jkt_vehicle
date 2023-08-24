@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.jktvehicleapp.R;
@@ -35,16 +36,22 @@ private ActivityLoginBinding binding;
         });
         binding.btnSendOTP.setOnClickListener(n->{
             if (binding.etPhoneNo.getText().toString().trim().isEmpty()) {
-                binding.etPhoneNo.setError("Enter Phone or Email");
-            } else {
-                boolean checkEmailOrPhone = checkEmailOrPhone(binding.etPhoneNo.getText().toString().trim());
+                binding.etPhoneNo.setError("Enter Phone No");
+            }
+            else if (binding.etPassword.getText().toString().trim().isEmpty()) {
+                binding.etPassword.setError("Enter Password");
+            }
+            else {
+              //  boolean checkEmailOrPhone = checkEmailOrPhone(binding.etPhoneNo.getText().toString().trim());
                 Register register = null;
-                if (checkEmailOrPhone) {
+                register = new Register(binding.etPhoneNo.getText().toString().trim(),
+                        binding.etPassword.getText().toString().trim());
+             /*   if (checkEmailOrPhone) {
                     register = new Register(binding.etPhoneNo.getText().toString().trim(), "");
                 } else {
                     register = new Register("",binding.etPhoneNo.getText().toString().trim());
-                }
-
+                }*/
+                binding.pBar.setVisibility(View.VISIBLE);
                 ApiInterface apiInterface = ApiClient.getApiInterFace(this);
                 ApiClient.callApi(apiInterface.login(register), this, 1);
             }
@@ -71,6 +78,7 @@ private ActivityLoginBinding binding;
                 String status = jsonObject.optString("status");
                 Toast.makeText(this, jsonObject.optString("message"), Toast.LENGTH_SHORT).show();
                 if(status.equals("1")) {
+                    binding.pBar.setVisibility(View.GONE);
                     Intent intent = new Intent(LoginActivity.this, SubmitOTPActivity.class);
                     intent.putExtra("whichPage", "login");
                     startActivity(intent);

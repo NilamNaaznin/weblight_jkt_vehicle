@@ -28,11 +28,6 @@ private ActivityCarComingBinding binding;
 
         initListener();
 
-
-
-
-
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

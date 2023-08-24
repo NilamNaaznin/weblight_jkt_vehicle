@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
-
-
         initView();
         initListener();
 

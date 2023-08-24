@@ -13,6 +13,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <!-- Customize your theme here. -->
+
     </style>
     <style name="Screen_background">
         <item name="android:background">#fff</item>
@@ -23,6 +24,9 @@
         <item name="height">60dp</item>
         <!--<item name="counterOverflowTextAppearance">@color/colorPrimary</item>-->
     </style>
+
+
+
 
 
 

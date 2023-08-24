@@ -72,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
             CustomPopup.PopUp("Logout", "Log Out", "Do you want to exit?", "", "Yes", "No", this, new PopUpInterface() {
                 @Override
                 public void onPositiveBtnClick() {
-                    Intent intent = new Intent(ProfileActivity.this, PhoneVerifyActivity.class);
+                    Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -93,7 +93,13 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         binding.imgProfile.setOnClickListener(v -> {
+
+        });
+        binding.imgProfileEdit.setOnClickListener(n->{
             OpenImagePicker();
+        });
+        binding.imgAadharEdit.setOnClickListener(n->{
+            OpenImagePicker2();
         });
     }
 
@@ -130,6 +136,42 @@ public class ProfileActivity extends AppCompatActivity {
             if (checkAndRequestPermissions(this)) {
                 Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 2);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+
+    }
+    private void OpenImagePicker2() {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.image_picker_view, null);
+        dialog.setContentView(view);
+        LinearLayout btcam, btgal;
+        btcam = view.findViewById(R.id.btCam);
+        btgal = view.findViewById(R.id.btGal);
+
+        btcam.setOnClickListener(v -> {
+            if (checkAndRequestPermissions(this)) {
+             /*   Intent takePictureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                String fileName = "temp.jpg";
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.TITLE, fileName);
+                imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(takePictureIntent, 100);
+                dialog.dismiss();*/
+
+                Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                // Start the activity with camera_intent, and request pic id
+                startActivityForResult(camera_intent, 1);
+            }
+        });
+
+        btgal.setOnClickListener(v -> {
+            if (checkAndRequestPermissions(this)) {
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, 3);
                 dialog.dismiss();
             }
         });
@@ -186,7 +228,7 @@ public class ProfileActivity extends AppCompatActivity {
                 // BitMap is data structure of image file which store the image in memory
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
                 // Set the image in imageview for display
-                binding.imgProfile.setImageBitmap(photo);
+                binding.imgProfileEdit.setImageBitmap(photo);
             }
         }
         if (requestCode == 2 && resultCode == RESULT_OK && null != data) {
@@ -199,7 +241,38 @@ public class ProfileActivity extends AppCompatActivity {
             cursor.close();
             File file = new File(picturePath);
             bitmap = BitmapFactory.decodeFile(file.getPath());
-            Glide.with(this).load(selectedImage).centerCrop().into(binding.imgProfile);
+            Glide.with(this).load(selectedImage).centerCrop().into(binding.imgProfileEdit);
+        }
+
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+           /* Uri selectedImage = data.getData();
+            String projection[] = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(imageUri, projection, null, null, null);
+            int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            File file = new File(cursor.getString(index));
+            bitmap= BitmapFactory.decodeFile(file.getPath());*/
+            //Glide.with(this).load(imageUri).into(binding.imgProfile);
+
+
+            if (requestCode == 1) {
+                // BitMap is data structure of image file which store the image in memory
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                // Set the image in imageview for display
+                binding.imgAadharEdit.setImageBitmap(photo);
+            }
+        }
+        if (requestCode == 3 && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+            File file = new File(picturePath);
+            bitmap = BitmapFactory.decodeFile(file.getPath());
+            Glide.with(this).load(selectedImage).centerCrop().into(binding.imgAadharEdit);
         }
     }
 

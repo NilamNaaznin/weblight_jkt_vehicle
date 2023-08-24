@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activity.BookingActivity">
-
         <fragment
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -18,9 +17,11 @@
 
         <ImageView
             android:id="@+id/imgBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
             android:src="@drawable/back_arrow" />
 
 
@@ -104,14 +105,17 @@
                         android:paddingTop="7dp"
                         android:paddingBottom="7dp">
 
+
                         <ImageView
                             android:id="@+id/imgAuto"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginStart="10dp"
+                            android:layout_centerVertical="true"
                             android:src="@drawable/rickshaw" />
 
                         <TextView
+                            android:id="@+id/tvAuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
@@ -127,18 +131,26 @@
                             android:text="luxury,comfort cars" />
 
                         <TextView
-                            android:id="@+id/tvAuto"
+                            android:id="@+id/tvAutoCharge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_toLeftOf="@+id/checkboxAuto"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="30dp"
                             android:drawableStart="@drawable/rupee"
                             android:text="15"
                             android:textSize="15dp" />
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                        <CheckBox
+                            android:id="@+id/checkboxAuto"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+
+                       <!-- <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/btnTickAuto"
                             android:layout_width="50dp"
                             android:layout_height="30dp"
@@ -151,7 +163,7 @@
                             android:tint="@color/white"
                             android:visibility="invisible"
                             app:shapeAppearanceOverlay="@style/circleImageView3" />
-                    </RelativeLayout>
+              -->      </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -175,6 +187,7 @@
                             android:id="@+id/imgMicro"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:layout_centerVertical="true"
                             android:layout_marginStart="10dp"
                             android:src="@drawable/sedan" />
 
@@ -199,15 +212,21 @@
                             android:id="@+id/tvPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="30dp"
+                            android:layout_toLeftOf="@+id/checkboxMicro"
                             android:drawableStart="@drawable/rupee"
                             android:text="35"
                             android:textSize="15dp" />
+                        <CheckBox
+                            android:id="@+id/checkboxMicro"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                      <!--  <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/btnTickCar"
                             android:layout_width="50dp"
                             android:layout_height="30dp"
@@ -220,7 +239,7 @@
                             android:tint="@color/white"
                             android:visibility="invisible"
                             app:shapeAppearanceOverlay="@style/circleImageView3" />
-                    </RelativeLayout>
+                  -->  </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -229,8 +248,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/cardViewCar"
                     android:layout_marginTop="7dp"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginEnd="7dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     app:cardElevation="6dp">
 
                     <RelativeLayout
@@ -243,6 +262,7 @@
                             android:id="@+id/imgMini"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:layout_centerVertical="true"
                             android:layout_marginStart="10dp"
                             android:src="@drawable/car_big" />
 
@@ -263,18 +283,26 @@
                             android:text="luxury,comfort cars" />
 
                         <TextView
-                            android:id="@+id/tvPticeBigCar"
+                            android:id="@+id/tvPriceBigCar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_toLeftOf="@id/checkboxMini"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="30dp"
                             android:drawableStart="@drawable/rupee"
                             android:text="45"
                             android:textSize="15dp" />
+                        <CheckBox
+                            android:id="@+id/checkboxMini"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:checked="false"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
 
-                        <com.google.android.material.imageview.ShapeableImageView
+
+                      <!--  <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/btnTickBigCar"
                             android:layout_width="50dp"
                             android:layout_height="30dp"
@@ -287,7 +315,7 @@
                             android:tint="@color/white"
                             android:visibility="invisible"
                             app:shapeAppearanceOverlay="@style/circleImageView3" />
-                    </RelativeLayout>
+                  -->  </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
 

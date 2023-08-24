@@ -36,24 +36,47 @@ public class PhoneVerifyActivity extends AppCompatActivity implements ApiRespons
             if (binding.etName.getText().toString().trim().isEmpty()) {
                 binding.etName.setError("Enter Name");
             } else if (binding.etPhoneNo.getText().toString().trim().isEmpty()) {
-                binding.etPhoneNo.setError("Enter Phone or Email");
-            } else {
-                boolean checkEmailOrPhone = checkEmailOrPhone(binding.etPhoneNo.getText().toString().trim());
+                binding.etPhoneNo.setError("Enter Phone No");
+            }
+            else if (binding.etPhoneNo.getText().toString().trim().length()<10) {
+                binding.etPhoneNo.setError("Enter Valid Phone No");
+            }
+                else if (binding.etPassword.getText().toString().trim().isEmpty()) {
+                    binding.etPassword.setError("Enter Password");
+            }
+            else if (binding.etPassword.getText().toString().trim().length()<6) {
+                binding.etPassword.setError("Enter Valid Password");
+            }
+            else if (binding.etConPassword.getText().toString().trim().isEmpty()) {
+                binding.etConPassword.setError("Enter Confirm Password");
+            }
+            else if (binding.etConPassword.getText().toString().trim().length()<6) {
+                binding.etConPassword.setError("Enter Valid Confirm Password");
+            }
+            else if (binding.etPassword.getText().toString().trim().equals(binding.etConPassword.getText().toString().trim())) {
+
+
+                Register register = null;
+                register = new Register(binding.etName.getText().toString().trim(),
+                        binding.etPhoneNo.getText().toString().trim(),
+                        binding.etPassword.getText().toString().trim(),
+                        binding.etConPassword.toString().trim());
+              /*  boolean checkEmailOrPhone = checkEmailOrPhone(binding.etPhoneNo.getText().toString().trim());
                 Register register = null;
                 if (checkEmailOrPhone) {
                     register = new Register(binding.etName.getText().toString().trim(), binding.etPhoneNo.getText().toString().trim(), "");
                 } else {
                     register = new Register(binding.etName.getText().toString().trim(), "", binding.etPhoneNo.getText().toString().trim());
-                }
+                }*/
 
                 ApiInterface apiInterface = ApiClient.getApiInterFace(this);
                 ApiClient.callApi(apiInterface.register(register), this, 1);
             }
+                else {
+                Toast.makeText(this, "Password not match", Toast.LENGTH_SHORT).show();
+            }
         });
 
-        binding.ivBack.setOnClickListener(n -> {
-            onBackPressed();
-        });
 
         binding.btnLogin.setOnClickListener(n -> {
             Intent intent = new Intent(PhoneVerifyActivity.this, LoginActivity.class);

@@ -32,9 +32,6 @@ public class RideHistoyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentRideHistoyBinding.inflate(inflater);
-
-
-        
         return binding.getRoot();
    
    }
