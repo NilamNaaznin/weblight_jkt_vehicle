@@ -3,6 +3,7 @@ package com.example.jktvehicleapp.activity;
 import static android.app.PendingIntent.getActivity;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -17,6 +18,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -180,32 +182,33 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    public static boolean checkAndRequestPermissions(final Activity context) {
-        int cameraPermission = ContextCompat.checkSelfPermission(context,
-                Manifest.permission.CAMERA);
-        int StoragePermission = ContextCompat.checkSelfPermission(context,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        int StoragePermission2 = ContextCompat.checkSelfPermission(context,
-                Manifest.permission.READ_EXTERNAL_STORAGE);
+    public static String[] storage_permissions = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA
+    };
 
-        List<String> listPermissionsNeeded = new ArrayList<>();
-        listPermissionsNeeded.clear();
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    public static String[] storage_permissions_33 = {
+            Manifest.permission.READ_MEDIA_IMAGES,
+            Manifest.permission.CAMERA
 
-        if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.CAMERA);
+    };
+
+    public static String[] permissions() {
+        String[] p;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            p = storage_permissions_33;
+        } else {
+            p = storage_permissions;
         }
-        if (StoragePermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
-        if (StoragePermission2 != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-        }
-        if (!listPermissionsNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(context, listPermissionsNeeded
-                            .toArray(new String[listPermissionsNeeded.size()]),
-                    REQUEST_ID_MULTIPLE_PERMISSIONS);
-            return false;
-        }
+        return p;
+    }
+
+    public boolean checkAndRequestPermissions(final Activity context) {
+        ActivityCompat.requestPermissions(this,
+                permissions(),
+                1);
         return true;
     }
 
@@ -213,26 +216,20 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-           /* Uri selectedImage = data.getData();
+        if (requestCode == 123 && resultCode == Activity.RESULT_OK) {
+            Uri selectedImage = data.getData();
+            Glide.with(this).load(selectedImage).into(binding.imgProfileEdit);
             String projection[] = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(imageUri, projection, null, null, null);
+            Cursor cursor = getContentResolver().query(selectedImage, projection, null, null, null);
             int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             File file = new File(cursor.getString(index));
-            bitmap= BitmapFactory.decodeFile(file.getPath());*/
-            //Glide.with(this).load(imageUri).into(binding.imgProfile);
+            bitmap= BitmapFactory.decodeFile(file.getPath());
 
-
-            if (requestCode == pic_id) {
-                // BitMap is data structure of image file which store the image in memory
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
-                // Set the image in imageview for display
-                binding.imgProfileEdit.setImageBitmap(photo);
-            }
         }
         if (requestCode == 2 && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
+            Glide.with(this).load(selectedImage).centerCrop().into(binding.imgProfileEdit);
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
             cursor.moveToFirst();
@@ -245,25 +242,20 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-           /* Uri selectedImage = data.getData();
+
+            Uri selectedImage = data.getData();
+            Glide.with(this).load(selectedImage).into(binding.imgAadharEdit);
             String projection[] = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(imageUri, projection, null, null, null);
+            Cursor cursor = getContentResolver().query(selectedImage, projection, null, null, null);
             int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             File file = new File(cursor.getString(index));
-            bitmap= BitmapFactory.decodeFile(file.getPath());*/
-            //Glide.with(this).load(imageUri).into(binding.imgProfile);
+            bitmap= BitmapFactory.decodeFile(file.getPath());
 
-
-            if (requestCode == 1) {
-                // BitMap is data structure of image file which store the image in memory
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
-                // Set the image in imageview for display
-                binding.imgAadharEdit.setImageBitmap(photo);
-            }
         }
         if (requestCode == 3 && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
+            Glide.with(this).load(selectedImage).centerCrop().into(binding.imgAadharEdit);
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
             cursor.moveToFirst();
@@ -272,7 +264,7 @@ public class ProfileActivity extends AppCompatActivity {
             cursor.close();
             File file = new File(picturePath);
             bitmap = BitmapFactory.decodeFile(file.getPath());
-            Glide.with(this).load(selectedImage).centerCrop().into(binding.imgAadharEdit);
+
         }
     }
 
