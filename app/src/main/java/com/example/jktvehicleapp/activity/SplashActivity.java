@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.jktvehicleapp.R;
 import com.example.jktvehicleapp.databinding.ActivitySplashBinding;
+import com.example.jktvehicleapp.utils.AppPreferences;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -54,10 +56,16 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                Intent intent = new Intent(SplashActivity.this, WelcomeActivity.class);
-                startActivity(intent);
-                finish();
+                Log.d("TAG", "run: " + AppPreferences.getUSER_ID(SplashActivity.this));
+                if (AppPreferences.getUSER_ID(SplashActivity.this).isEmpty()) {
+                    Intent intent = new Intent(SplashActivity.this, WelcomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
             }
         }, 3700);

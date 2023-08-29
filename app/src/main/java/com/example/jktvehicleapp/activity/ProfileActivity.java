@@ -22,23 +22,35 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.jktvehicleapp.R;
 import com.example.jktvehicleapp.databinding.ActivityProfileBinding;
+import com.example.jktvehicleapp.network.ApiClient;
+import com.example.jktvehicleapp.network.ApiInterface;
+import com.example.jktvehicleapp.network.ApiResponse;
+import com.example.jktvehicleapp.utils.AppPreferences;
 import com.example.jktvehicleapp.utils.CustomPopup;
 import com.example.jktvehicleapp.utils.PopUpInterface;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileActivity extends AppCompatActivity {
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
+public class ProfileActivity extends AppCompatActivity implements ApiResponse {
 
     private ActivityProfileBinding binding;
 
@@ -46,6 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int pic_id = 123;
     private Bitmap bitmap = null;
     Uri imageUri;
+    String id="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +87,7 @@ public class ProfileActivity extends AppCompatActivity {
             CustomPopup.PopUp("Logout", "Log Out", "Do you want to exit?", "", "Yes", "No", this, new PopUpInterface() {
                 @Override
                 public void onPositiveBtnClick() {
+                    AppPreferences.setUSER_ID(ProfileActivity.this,null);
                     Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
@@ -106,6 +120,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        id = AppPreferences.getUSER_ID(this);
     }
 
 
@@ -224,8 +239,12 @@ public class ProfileActivity extends AppCompatActivity {
             int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             File file = new File(cursor.getString(index));
-            bitmap= BitmapFactory.decodeFile(file.getPath());
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("profile_img", file.getName(), requestFile);
 
+            ApiInterface apiInterface = ApiClient.getApiInterFace(this);
+            ApiClient.callApi(apiInterface.profileImageUpload(body, id), this, 1);
         }
         if (requestCode == 2 && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
@@ -237,8 +256,11 @@ public class ProfileActivity extends AppCompatActivity {
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
             File file = new File(picturePath);
-            bitmap = BitmapFactory.decodeFile(file.getPath());
-            Glide.with(this).load(selectedImage).centerCrop().into(binding.imgProfileEdit);
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("profile_img", file.getName(), requestFile);
+            ApiInterface apiInterface = ApiClient.getApiInterFace(this);
+            ApiClient.callApi(apiInterface.profileImageUpload(body, id), this, 1);
         }
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
@@ -250,7 +272,11 @@ public class ProfileActivity extends AppCompatActivity {
             int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             File file = new File(cursor.getString(index));
-            bitmap= BitmapFactory.decodeFile(file.getPath());
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("aadhar_card", file.getName(), requestFile);
+            ApiInterface apiInterface = ApiClient.getApiInterFace(this);
+            ApiClient.callApi(apiInterface.aadhaarImageUpload(body, id), this, 2);
 
         }
         if (requestCode == 3 && resultCode == RESULT_OK && null != data) {
@@ -263,8 +289,11 @@ public class ProfileActivity extends AppCompatActivity {
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
             File file = new File(picturePath);
-            bitmap = BitmapFactory.decodeFile(file.getPath());
-
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("aadhar_card", file.getName(), requestFile);
+            ApiInterface apiInterface = ApiClient.getApiInterFace(this);
+            ApiClient.callApi(apiInterface.aadhaarImageUpload(body, id), this, 2);
         }
     }
 
@@ -275,4 +304,25 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void OnResponse(String response, int apiRequest) {
+        try {
+            if (apiRequest == 1) {
+                JSONObject jsonObject = new JSONObject(response);
+                Toast.makeText(this, jsonObject.optString("message"), Toast.LENGTH_SHORT).show();
+            }
+            else if (apiRequest == 2) {
+                JSONObject jsonObject = new JSONObject(response);
+                Toast.makeText(this, jsonObject.optString("message"), Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Override
+    public void OnError(String errorResponse, int apiRequest) {
+
+        Log.d("TAG", "OnError: "+errorResponse);
+    }
 }

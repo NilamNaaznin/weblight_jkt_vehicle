@@ -14,6 +14,8 @@ import com.example.jktvehicleapp.modelClass.Register;
 import com.example.jktvehicleapp.network.ApiClient;
 import com.example.jktvehicleapp.network.ApiInterface;
 import com.example.jktvehicleapp.network.ApiResponse;
+import com.example.jktvehicleapp.utils.CustomPopup;
+import com.example.jktvehicleapp.utils.PopUpInterface;
 
 import org.json.JSONObject;
 
@@ -103,11 +105,22 @@ public class PhoneVerifyActivity extends AppCompatActivity implements ApiRespons
                 String status = jsonObject.optString("status");
                 Toast.makeText(this, jsonObject.optString("Message"), Toast.LENGTH_SHORT).show();
                 if(status.equals("1")) {
-                    Intent intent = new Intent(PhoneVerifyActivity.this, SubmitOTPActivity.class);
-                    intent.putExtra("userId", binding.etName.getText().toString().trim());
-                    intent.putExtra("whichPage", "register");
-                    startActivity(intent);
-                    finish();
+                    CustomPopup.PopUp("Success", "", "Register Successfully", "", "OK", "", this, new PopUpInterface() {
+                        @Override
+                        public void onPositiveBtnClick() {
+                            Intent intent = new Intent(PhoneVerifyActivity.this, LoginActivity.class);
+                            intent.putExtra("userId", binding.etName.getText().toString().trim());
+                            intent.putExtra("whichPage", "register");
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void onNegativeBtnClick() {
+
+                        }
+                    });
+
                 }
 
             }

@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.example.jktvehicleapp.modelClass.Register;
 import com.example.jktvehicleapp.network.ApiClient;
 import com.example.jktvehicleapp.network.ApiInterface;
 import com.example.jktvehicleapp.network.ApiResponse;
+import com.example.jktvehicleapp.utils.AppPreferences;
 
 import org.json.JSONObject;
 
@@ -78,6 +80,11 @@ private ActivityLoginBinding binding;
                 String status = jsonObject.optString("status");
                 Toast.makeText(this, jsonObject.optString("message"), Toast.LENGTH_SHORT).show();
                 if(status.equals("1")) {
+                    JSONObject object=jsonObject.getJSONObject("data");
+                    AppPreferences.setUSER_ID(this,object.optString("id"));
+                    AppPreferences.setUserName(this,object.optString("name"));
+                    AppPreferences.setUserName(this,object.optString("mobile"));
+                   // Log.e("333333333333333",object.optString("name"));
                     binding.pBar.setVisibility(View.GONE);
                     Intent intent = new Intent(LoginActivity.this, SubmitOTPActivity.class);
                     intent.putExtra("whichPage", "login");

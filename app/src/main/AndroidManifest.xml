@@ -25,7 +25,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.VehicleApp"
-        tools:targetApi="31">
+        android:requestLegacyExternalStorage="true"
+        tools:targetApi="33">
         <activity
             android:name=".activity.CarComingActivity"
             android:exported="false" />

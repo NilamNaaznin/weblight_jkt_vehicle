@@ -54,6 +54,8 @@
                 android:cursorVisible="true"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
+                android:maxLength="10"
+                android:inputType="number"
                 android:maxLines="1"
                 android:hint="Enter Phone No"
                 android:paddingStart="15dp"
