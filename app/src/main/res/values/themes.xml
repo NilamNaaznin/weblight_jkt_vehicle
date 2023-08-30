@@ -13,8 +13,8 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <!-- Customize your theme here. -->
-
     </style>
+
     <style name="Screen_background">
         <item name="android:background">#fff</item>
     </style>
