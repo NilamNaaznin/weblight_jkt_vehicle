@@ -68,49 +68,7 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         }, 3700);
-        //StartAnimation();
         animation();
-    }
-
-    private void StartAnimation() {
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.fullpage_animation);
-        anim.reset();
-        RelativeLayout bool = findViewById(R.id.relativeLayout);
-        bool.clearAnimation();
-        bool.startAnimation(anim);
-
-
-       /* //welcome logo Animation Purpose
-        anim = AnimationUtils.loadAnimation(this, R.anim.image_animation);
-        //ImageView imgView=findViewById(R.id.imgView);
-        anim.reset();
-        imgView.clearAnimation();
-        imgView.startAnimation(anim);*/
-
-        //Text View Animation
-        anim = AnimationUtils.loadAnimation(this, R.anim.text_animation);
-        TextView tvJ=findViewById(R.id.tvJ);
-        anim.reset();
-        tvJ.clearAnimation();
-        tvJ.startAnimation(anim);
-
-       anim = AnimationUtils.loadAnimation(this, R.anim.text_animation_down);
-        TextView tvK=findViewById(R.id.tvK);
-        anim.reset();
-        tvK.clearAnimation();
-        tvK.startAnimation(anim);
-
-        anim = AnimationUtils.loadAnimation(this, R.anim.text_animation_right);
-        TextView tvT=findViewById(R.id.tvT);
-        anim.reset();
-        tvT.clearAnimation();
-        tvT.startAnimation(anim);
-
-      /*   anim = AnimationUtils.loadAnimation(this, R.anim.text_animation);
-        TextView tvT=findViewById(R.id.tvT);
-        anim.reset();
-        tvT.clearAnimation();
-        tvT.startAnimation(anim);*/
     }
     private void animation() {
 

@@ -10,6 +10,9 @@ public class ApiConstants {
     public static final String PROFILE_IMG="profile_img";
     public static final String AADHAAR_IMG="aadhar_img";
 
+    public static final String profileImagePath = "https://jkt.jkguesthouse.co.in/profileImg/";
+    public static final String aadhaarCardImagePath = "https://jkt.jkguesthouse.co.in/AadharCard/";
+
 
 
     public class apiRequest {

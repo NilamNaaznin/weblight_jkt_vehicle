@@ -28,6 +28,7 @@ import com.bumptech.glide.Glide;
 import com.weblite.jktvehicleapp.R;
 import com.weblite.jktvehicleapp.databinding.ActivityProfileBinding;
 import com.weblite.jktvehicleapp.network.ApiClient;
+import com.weblite.jktvehicleapp.network.ApiConstants;
 import com.weblite.jktvehicleapp.network.ApiInterface;
 import com.weblite.jktvehicleapp.network.ApiResponse;
 import com.weblite.jktvehicleapp.utils.AppPreferences;
@@ -117,6 +118,8 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
         id = AppPreferences.getUSER_ID(this);
         binding.tvName.setText(AppPreferences.getUserName(this));
         binding.tvPhone.setText(AppPreferences.getUserMob(this));
+        //Glide.with(this).load(ApiConstants.profileImagePath + id +"/" + ).into(binding.imgProfileEdit);
+        //Glide.with(this).load(ApiConstants.aadhaarCardImagePath + id +"/" + ).into(binding.imgProfileEdit);
     }
 
 
