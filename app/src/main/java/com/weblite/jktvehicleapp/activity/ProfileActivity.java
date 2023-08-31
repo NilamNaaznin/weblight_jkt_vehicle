@@ -358,6 +358,8 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
                     binding.tvPhone.setText(object.optString("mobile"));
                     binding.etName.setText(object.optString("name"));
                     binding.etPhoneNo.setText(object.optString("mobile"));
+                    AppPreferences.setUserMob(this,object.optString("mobile"));
+                    AppPreferences.setUserName(this,object.optString("name"));
                     String name=object.optString("name");
                     Log.e("544444646446",name);
                     Glide.with(this).load(ApiConstants.profileImagePath + id +"/" +object.optString("profile_img")).into(binding.imgProfile);
