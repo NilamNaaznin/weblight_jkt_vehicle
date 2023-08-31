@@ -2,14 +2,19 @@ package com.weblite.jktvehicleapp.network;
 
 import com.weblite.jktvehicleapp.modelClass.Register;
 
+import java.util.HashMap;
+
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface ApiInterface {
 
@@ -27,6 +32,20 @@ public interface ApiInterface {
     @Multipart
     @POST(ApiConstants.AADHAAR_IMG + "/{id}")
     Call<ResponseBody> aadhaarImageUpload(@Part MultipartBody.Part image, @Path(value="id", encoded=true) String id);
+
+/*    @POST(ApiConstants.UPDATE_NAME_PHONE + "/{id}")
+    Call<ResponseBody> updateNamePhone(@Body Register body);*/
+
+
+
+    @GET(ApiConstants.GET_PROFILE+"/{id}")
+    Call<ResponseBody> getProfile(@Path("id") String id);
+
+    @POST(ApiConstants.UPDATE_NAME_PHONE+"/{id}")
+    Call<ResponseBody> updateNamePhone(@Body HashMap<String,String>map,@Path("id") String id);
+
+
+
     // "status": 1,
     //    "Message": "User created successfully"
 

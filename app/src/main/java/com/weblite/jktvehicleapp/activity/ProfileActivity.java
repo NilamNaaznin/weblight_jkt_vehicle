@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.weblite.jktvehicleapp.R;
 import com.weblite.jktvehicleapp.databinding.ActivityProfileBinding;
+import com.weblite.jktvehicleapp.modelClass.Register;
 import com.weblite.jktvehicleapp.network.ApiClient;
 import com.weblite.jktvehicleapp.network.ApiConstants;
 import com.weblite.jktvehicleapp.network.ApiInterface;
@@ -40,10 +41,13 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.HashMap;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 
 public class ProfileActivity extends AppCompatActivity implements ApiResponse {
 
@@ -63,6 +67,15 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
         initListener();
 
         initView();
+        getProfileDetails();
+    }
+
+    private void getProfileDetails() {
+
+
+        ApiInterface apiInterface = ApiClient.getApiInterFace(this);
+        ApiClient.callApi(apiInterface.getProfile(AppPreferences.getUSER_ID(this)), this, 3);
+
     }
 
     private void initListener() {
@@ -112,17 +125,39 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
         binding.imgAadharEdit.setOnClickListener(n->{
             OpenImagePicker2();
         });
+
+        binding.btnSubmit.setOnClickListener(n->{
+            if (binding.etPhoneNo.getText().toString().isEmpty()){
+                binding.etPhoneNo.setError("Enter Phone No");
+            }else if (binding.etName.getText().toString().isEmpty()){
+                binding.etName.setError("Enter Name");
+            }
+            else {
+           /*     Register register = null;
+                register = new Register(binding.etName.getText().toString().trim(),
+                        "",
+                        binding.etPhoneNo.getText().toString().trim());*/
+
+                ApiInterface apiInterface = ApiClient.getApiInterFace(this);
+                HashMap<String,String>map=new HashMap<>();
+                map.put("name",binding.etName.getText().toString());
+                map.put("email","");
+                map.put("mobile",binding.etPhoneNo.getText().toString());
+                ApiClient.callApi(apiInterface.updateNamePhone(map,AppPreferences.getUSER_ID(this)), this, 4);
+            }
+
+        });
     }
 
     private void initView() {
         id = AppPreferences.getUSER_ID(this);
-        binding.tvName.setText(AppPreferences.getUserName(this));
-        binding.tvPhone.setText(AppPreferences.getUserMob(this));
+       // binding.tvName.setText(AppPreferences.getUserName(this));
+       // binding.tvPhone.setText(AppPreferences.getUserMob(this));
+      //  binding.etName.setText(AppPreferences.getUserName(this));
+      //  binding.etPhoneNo.setText(AppPreferences.getUserMob(this));
         //Glide.with(this).load(ApiConstants.profileImagePath + id +"/" + ).into(binding.imgProfileEdit);
         //Glide.with(this).load(ApiConstants.aadhaarCardImagePath + id +"/" + ).into(binding.imgProfileEdit);
     }
-
-
     private void OpenImagePicker() {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View view = LayoutInflater.from(this).inflate(R.layout.image_picker_view, null);
@@ -195,7 +230,6 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
 
 
     }
-
     public static String[] storage_permissions = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -261,7 +295,6 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
             ApiInterface apiInterface = ApiClient.getApiInterFace(this);
             ApiClient.callApi(apiInterface.profileImageUpload(body, id), this, 1);
         }
-
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
 
             Uri selectedImage = data.getData();
@@ -313,6 +346,40 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
             else if (apiRequest == 2) {
                 JSONObject jsonObject = new JSONObject(response);
                 Toast.makeText(this, jsonObject.optString("message"), Toast.LENGTH_SHORT).show();
+            }
+
+            else if (apiRequest == 3) {
+                JSONObject jsonObject = new JSONObject(response);
+                String status = jsonObject.optString("status");
+                Toast.makeText(this, jsonObject.optString("message"), Toast.LENGTH_SHORT).show();
+                if(status.equals("1")) {
+                    JSONObject object=jsonObject.getJSONObject("data");
+                    binding.tvName.setText(object.optString("name"));
+                    binding.tvPhone.setText(object.optString("mobile"));
+                    binding.etName.setText(object.optString("name"));
+                    binding.etPhoneNo.setText(object.optString("mobile"));
+                    String name=object.optString("name");
+                    Log.e("544444646446",name);
+                    Glide.with(this).load(ApiConstants.profileImagePath + id +"/" +object.optString("profile_img")).into(binding.imgProfile);
+
+                    Glide.with(this).load(ApiConstants.profileImagePath + id +"/" +object.optString("profile_img")).into(binding.imgProfileEdit);
+                    Glide.with(this).load(ApiConstants.aadhaarCardImagePath + id +"/" +object.optString("aadhar_card")).into(binding.imgAadharEdit);
+
+                    //AppPreferences.setUSER_ID(this,object.optString("id"));
+                    // AppPreferences.setUserName(this,object.optString("name"));
+                    // AppPreferences.setUserMob(this,object.optString("mobile"));
+                    // Log.e("333333333333333",object.optString("name"));
+                    //binding.pBar.setVisibility(View.GONE);
+
+                }
+
+            }
+            else if (apiRequest == 4) {
+                JSONObject object = new JSONObject(response);
+                Toast.makeText(this, object.optString("message"), Toast.LENGTH_SHORT).show();
+                JSONObject jsonObject=object.getJSONObject("data");
+                //binding.etName.setText(jsonObject.optString("name"));
+               // binding.etPhoneNo.setText(jsonObject.optString("mobile"));
             }
         } catch (Exception e) {
 

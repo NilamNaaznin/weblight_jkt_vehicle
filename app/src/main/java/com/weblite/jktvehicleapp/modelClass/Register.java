@@ -1,7 +1,7 @@
 package com.weblite.jktvehicleapp.modelClass;
 
 public class Register {
-    String name,mobile,password,confirm_password;
+    String name,mobile,password,confirm_password,email;
 
     public Register(String name, String mobile, String password, String confirm_password) {
         this.name = name;
@@ -15,6 +15,20 @@ public class Register {
         this.password = password;
     }
 
+    public Register (String name, String email,String mobile) {
+        this.name = name;
+        this.email = email;
+        this.mobile = mobile;
+
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getName() {
         return name;
