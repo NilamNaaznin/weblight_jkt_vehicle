@@ -14,22 +14,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.weblite.jktvehicleapp.R;
 import com.weblite.jktvehicleapp.databinding.ActivityMainBinding;
 import com.weblite.jktvehicleapp.databinding.CustomPopupDialogBinding;
 import com.weblite.jktvehicleapp.fragment.HomeFragment;
 import com.weblite.jktvehicleapp.fragment.RideHistoyFragment;
+import com.weblite.jktvehicleapp.network.ApiConstants;
 import com.weblite.jktvehicleapp.utils.AppPreferences;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActivityMainBinding binding;
-    TextView tvHeaderName;
     ActionBarDrawerToggle actionBarDrawerToggle;
     private Fragment fragment = null;
+
+    private ImageView imageViewNavHeaderLayout;
+    private TextView tvHeaderName;
+    private TextView tvPercentage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +79,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
         View headerView = navigationView.getHeaderView(0);
-        TextView tvHeaderName = (TextView) headerView.findViewById(R.id.tvHeaderName);
+        tvHeaderName = (TextView) headerView.findViewById(R.id.tvHeaderName);
+        tvPercentage = (TextView) headerView.findViewById(R.id.tvPercentage);
+        imageViewNavHeaderLayout = (ImageView) headerView.findViewById(R.id.imageViewNavHeaderLayout);
 
         tvHeaderName.setText(AppPreferences.getUserName(this));
+        tvPercentage.setText(AppPreferences.getPercentage(this) + "%");
+        Glide.with(this).load(ApiConstants.profileImagePath + AppPreferences.getUSER_ID(this) +"/" + AppPreferences.getProfileImg(this)).circleCrop().into(imageViewNavHeaderLayout);
 
         tvHeaderName.setOnClickListener(n->{
             Intent intent=new Intent(MainActivity.this,ProfileActivity.class);

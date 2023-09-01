@@ -22,9 +22,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.navigation.NavigationView;
 import com.weblite.jktvehicleapp.R;
 import com.weblite.jktvehicleapp.databinding.ActivityProfileBinding;
 import com.weblite.jktvehicleapp.modelClass.Register;
@@ -62,7 +64,6 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding= DataBindingUtil.setContentView(this,R.layout.activity_profile);
-
 
         initListener();
 
@@ -157,6 +158,21 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
       //  binding.etPhoneNo.setText(AppPreferences.getUserMob(this));
         //Glide.with(this).load(ApiConstants.profileImagePath + id +"/" + ).into(binding.imgProfileEdit);
         //Glide.with(this).load(ApiConstants.aadhaarCardImagePath + id +"/" + ).into(binding.imgProfileEdit);
+
+       /* NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
+        View headerView = navigationView.getHeaderView(0);
+        TextView tvPercentage = (TextView) headerView.findViewById(R.id.tvPercentage);
+        int per=25;
+
+        //tvHeaderName.setText(AppPreferences.getUserName(this));
+
+        if (binding.imgProfile.getDrawable()==null && binding.imgAadharEdit.getDrawable()==null){
+            tvPercentage.setText(String.valueOf(50));
+        }
+        else {
+            tvPercentage.setText(String.valueOf(50+per));
+        }*/
+
     }
     private void OpenImagePicker() {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
@@ -294,6 +310,7 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
                     MultipartBody.Part.createFormData("profile_img", file.getName(), requestFile);
             ApiInterface apiInterface = ApiClient.getApiInterFace(this);
             ApiClient.callApi(apiInterface.profileImageUpload(body, id), this, 1);
+
         }
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
 
@@ -342,12 +359,19 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
             if (apiRequest == 1) {
                 JSONObject jsonObject = new JSONObject(response);
                 Toast.makeText(this, jsonObject.optString("message"), Toast.LENGTH_SHORT).show();
+                JSONObject object=jsonObject.getJSONObject("data");
+                ApiInterface apiInterface = ApiClient.getApiInterFace(this);
+                ApiClient.callApi(apiInterface.getProfile(AppPreferences.getUSER_ID(this)), this, 3);
+
+              //  Glide.with(this).load(ApiConstants.profileImagePath + id +"/" +object.optString("profile_img")).into(MainActivity.imageViewNavHeaderLayout);
+
             }
             else if (apiRequest == 2) {
                 JSONObject jsonObject = new JSONObject(response);
                 Toast.makeText(this, jsonObject.optString("message"), Toast.LENGTH_SHORT).show();
+                ApiInterface apiInterface = ApiClient.getApiInterFace(this);
+                ApiClient.callApi(apiInterface.getProfile(AppPreferences.getUSER_ID(this)), this, 3);
             }
-
             else if (apiRequest == 3) {
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.optString("status");
@@ -361,9 +385,23 @@ public class ProfileActivity extends AppCompatActivity implements ApiResponse {
                     AppPreferences.setUserMob(this,object.optString("mobile"));
                     AppPreferences.setUserName(this,object.optString("name"));
                     String name=object.optString("name");
-                    Log.e("544444646446",name);
-                    Glide.with(this).load(ApiConstants.profileImagePath + id +"/" +object.optString("profile_img")).into(binding.imgProfile);
 
+                    //MainActivity.tvHeaderName.setText(object.optString("name"));
+                    if(!object.optString("profile_img").equals("null")) {
+                        AppPreferences.setProfileImg(this, object.optString("profile_img"));
+                    }
+                    if (object.optString("profile_img").equals("null") && object.optString("aadhar_card").equals("null")) {
+                        AppPreferences.setPercentage(this,"50");
+                    } else if (!object.optString("profile_img").equals("null") && !object.optString("aadhar_card").equals("null")){
+                        AppPreferences.setPercentage(this,"100");
+                    } else {
+                        AppPreferences.setPercentage(this,"75");
+                    }
+
+
+                    //Glide.with(this).load(ApiConstants.profileImagePath + id +"/" +object.optString("profile_img")).into(MainActivity.imageViewNavHeaderLayout);
+
+                    Glide.with(this).load(ApiConstants.profileImagePath + id +"/" +object.optString("profile_img")).into(binding.imgProfile);
                     Glide.with(this).load(ApiConstants.profileImagePath + id +"/" +object.optString("profile_img")).into(binding.imgProfileEdit);
                     Glide.with(this).load(ApiConstants.aadhaarCardImagePath + id +"/" +object.optString("aadhar_card")).into(binding.imgAadharEdit);
 

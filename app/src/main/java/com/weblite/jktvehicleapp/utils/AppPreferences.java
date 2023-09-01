@@ -9,6 +9,10 @@ public class AppPreferences {
     private static final  String USER_MOB="mob";
     private static final  String USER_EMAIL="email";
 
+    private static final  String PROFILE_IMG="profile_img";
+    private static final  String PERCENTAGE="percentage";
+
+
 
     public static void PutBoolean(Context context, String key, boolean val){
         SharedPreferences preferences=context.getSharedPreferences("SharedPrefarence",Context.MODE_PRIVATE);
@@ -67,6 +71,22 @@ public class AppPreferences {
 
     public static String getUSER_ID(Context context){
         return GetString(context,USER_ID);
+    }
+
+    public static void setProfileImg(Context context,String img){
+        PutString(context,PROFILE_IMG,img);
+    }
+
+    public static String getProfileImg(Context context){
+        return GetString(context,PROFILE_IMG);
+    }
+
+    public static void setPercentage(Context context,String percentage){
+        PutString(context,PERCENTAGE,percentage);
+    }
+
+    public static String getPercentage(Context context){
+        return GetString(context,PERCENTAGE);
     }
 
 
