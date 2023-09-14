@@ -31,9 +31,7 @@ private ActivityCarComingBinding binding;
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 binding.lottieAni.setVisibility(View.VISIBLE);
-
                 binding.cardOTP.setVisibility(View.VISIBLE);
                 binding.tvOTP.setVisibility(View.VISIBLE);
                 binding.tvGetOTP.setVisibility(View.VISIBLE);
@@ -43,7 +41,6 @@ private ActivityCarComingBinding binding;
                 binding.tvEstimate.setVisibility(View.VISIBLE);
                 binding.tvCharge.setVisibility(View.VISIBLE);
                 binding.imgCall.setVisibility(View.VISIBLE);
-
                 binding.lottieAni.setVisibility(View.GONE);
             }
         }, 3100);

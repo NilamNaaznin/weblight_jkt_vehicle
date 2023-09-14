@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -17,6 +18,8 @@ import com.weblite.jktvehicleapp.utils.CustomPopup;
 import com.weblite.jktvehicleapp.utils.PopUpInterface;
 
 import org.json.JSONObject;
+
+import java.util.regex.Pattern;
 
 
 public class PhoneVerifyActivity extends AppCompatActivity implements ApiResponse {
@@ -104,19 +107,19 @@ public class PhoneVerifyActivity extends AppCompatActivity implements ApiRespons
                 String status = jsonObject.optString("status");
                 Toast.makeText(this, jsonObject.optString("Message"), Toast.LENGTH_SHORT).show();
                 if(status.equals("1")) {
-                    CustomPopup.PopUp("Success", "", "Register Successfully", "", "OK", "", this, new PopUpInterface() {
+                    CustomPopup.PopUp("Success1", "", "Register Successfully", "", "", "OK", this, new PopUpInterface() {
                         @Override
                         public void onPositiveBtnClick() {
+
+                        }
+
+                        @Override
+                        public void onNegativeBtnClick() {
                             Intent intent = new Intent(PhoneVerifyActivity.this, LoginActivity.class);
                             intent.putExtra("userId", binding.etName.getText().toString().trim());
                             intent.putExtra("whichPage", "register");
                             startActivity(intent);
                             finish();
-                        }
-
-                        @Override
-                        public void onNegativeBtnClick() {
-
                         }
                     });
 
@@ -131,5 +134,42 @@ public class PhoneVerifyActivity extends AppCompatActivity implements ApiRespons
     @Override
     public void OnError(String errorResponse, int apiRequest) {
 
+    }
+
+    public void validatePass(String password) {
+
+        // check for pattern
+        Pattern uppercase = Pattern.compile("[A-Z]");
+        Pattern lowercase = Pattern.compile("[a-z]");
+        Pattern digit = Pattern.compile("[0-9]");
+
+        // if lowercase character is not present
+        if (!lowercase.matcher(password).find()) {
+            //atoz.setTextColor(Color.RED);
+        } else {
+            // if lowercase character is  present
+           // atoz.setTextColor(Color.GREEN);
+        }
+
+        // if uppercase character is not present
+        if (!uppercase.matcher(password).find()) {
+           // AtoZ.setTextColor(Color.RED);
+        } else {
+            // if uppercase character is  present
+            //AtoZ.setTextColor(Color.GREEN);
+        }
+        // if digit is not present
+        if (!digit.matcher(password).find()) {
+            //num.setTextColor(Color.RED);
+        } else {
+            // if digit is present
+           // num.setTextColor(Color.GREEN);
+        }
+        // if password length is less than 8
+    /*    if (password.length() < 8) {
+            charcount.setTextColor(Color.RED);
+        } else {
+            charcount.setTextColor(Color.GREEN);
+        }*/
     }
 }

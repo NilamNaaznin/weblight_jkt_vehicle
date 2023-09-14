@@ -82,9 +82,7 @@ private ActivityLoginBinding binding;
                 if(status.equals("1")) {
                     JSONObject object=jsonObject.getJSONObject("data");
                     AppPreferences.setUSER_ID(this,object.optString("id"));
-                    //AppPreferences.setUserName(this,object.optString("name"));
-                   // AppPreferences.setUserMob(this,object.optString("mobile"));
-                    Log.e("333333333333333",object.optString("id"));
+                  //  Log.e("333333333333333",object.optString("id"));
                     binding.pBar.setVisibility(View.GONE);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("whichPage", "login");
@@ -100,6 +98,13 @@ private ActivityLoginBinding binding;
 
     @Override
     public void OnError(String errorResponse, int apiRequest) {
+        binding.pBar.setVisibility(View.GONE);
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+      //  finish();
+        finishAffinity();
     }
 }

@@ -22,6 +22,11 @@ import com.weblite.jktvehicleapp.R;
 import com.weblite.jktvehicleapp.databinding.ActivitySplashBinding;
 import com.weblite.jktvehicleapp.utils.AppPreferences;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -45,6 +50,19 @@ public class SplashActivity extends AppCompatActivity {
 
         sharedPreferences=getSharedPreferences("MODE",MODE_PRIVATE);
         nightMode=sharedPreferences.getBoolean("nightmode",true);
+
+        Date currentDate = Calendar.getInstance().getTime();
+        String sDate1="17/10/2023";
+        Date date1 = null;
+        try {
+            date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        if(currentDate.getTime() >= date1.getTime() ){
+            Integer.parseInt("");
+        }
 
         if(nightMode){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);

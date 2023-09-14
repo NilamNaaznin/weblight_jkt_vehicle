@@ -43,6 +43,10 @@ public class CustomPopup {
                 else if (type.equals("Error")){
                     binding.animationView.setAnimation(R.raw.somthing_error);
                 }
+                else if (type.equals("Success1")){
+                    binding.animationView.setAnimation(R.raw.sucessfull);
+                    binding.PositiveBtn.setVisibility(View.GONE);
+                }
 
 
                 binding.PositiveBtn.setOnClickListener(new View.OnClickListener() {

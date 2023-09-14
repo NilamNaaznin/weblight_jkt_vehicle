@@ -13,6 +13,12 @@ public class ApiConstants {
     public static final String profileImagePath = "https://jkt.jkguesthouse.co.in/profileImg/";
     public static final String aadhaarCardImagePath = "https://jkt.jkguesthouse.co.in/AadharCard/";
 
+
+
+    //driversPanCard/
+    //driversAadharCard/
+    //driversDrivingLicencse/
+
     public static final String GET_PROFILE="show";
     public static final String UPDATE_NAME_PHONE="update";
 
